@@ -11,6 +11,8 @@ TCB    YKTCBArray[MAXTASKS+1];	/* array to allocate all needed TCBs
 				   (extra one is for the idle task) */
 
 
+//claudiaaaaaa
+
 void YKInitialize(void)
 {
 	int i;
