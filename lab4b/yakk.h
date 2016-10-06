@@ -3,15 +3,17 @@
 
 /*Kernel Data Structures*/
 
-typedef struct TCBlock *TCBptr; //pointer that points to the struct??
+//gedit
 
+typedef struct TCBlock *TCBptr; //pointer that points to the struct??
 
 typedef struct TCBlock {				
 	int	TCBId;			/* Task name or ID*/    
 	void *stackptr;		/* pointer to current top of stack */
-    int state;			/* current state */
+    char state;			/* current state */
     int priority;		/* current priority */
-    TCBptr next;		/* forward ptr for linked list */
+    TCBptr next;		/* forward ptr for double linked list */
+    TCBptr prev;       /* prev otr for double linked lsit*/
 }  TCB;
 
 
@@ -19,15 +21,15 @@ void YKInitialize(void);
 void YKIdleTask(void);
 void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority);
 void YKRun(void);
-//void YKDelayTask(unsigned count);
 void YKEnterMutex(void);
 void YKExitMutex(void);
-//void YKEnterISR(void);
-//void YKExitISR(void);
 void YKScheduler(void);
 void YKDispatcher(void);
-//void YKTickHandler(void);
+
+//global variable//
+
 unsigned int YKCtxSwCount;
 unsigned int YKIdleCount;
+
 
 #endif
