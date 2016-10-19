@@ -15,7 +15,7 @@ TCBptr YKReadyNextTask; //points to ready tasSK
 
 unsigned int running;           /*  Flag to see if mt Kernel is running */
 unsigned int depth;
-unsigned int YKCtxSwCount;
+int YKCtxSwCount;
 unsigned int YKIdleCount;
 unsigned int CurrPriority;     /* Priority task that is running */
 unsigned int NextPriority;     /* Which one is the priority to excute next? */
@@ -32,7 +32,7 @@ void YKInitialize(void)
     YKIdleCount  =0;
     running   	 =0;
     depth 		 =0;
-    CurrPriority =100    /* Priority task that is running */
+    CurrPriority =100;   /* Priority task that is running */
     NextPriority =0;/* Which one is the priority to excute next? */
     FirstDispatcherFlag=1;
     
@@ -61,9 +61,10 @@ void YKIdleTask(void){
 }
 void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//and this one
     
+
+    TCBptr newTask, tmp2;
     unsigned int *stack_ptr;
     stack_ptr =taskStack;
-    TCBptr newTask, tmp2;
    	
     newTask = YKemptyTCBList; //putting first task to temp//
     YKemptyTCBList = newTask->next;

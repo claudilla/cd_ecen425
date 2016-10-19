@@ -6,9 +6,6 @@
 #define YAKU_H
 
 #define NULL 0
-#define MAXTASKS 3					/* count of user tasks */
-#define idleSTACKSIZE 256
-
 
 
 
