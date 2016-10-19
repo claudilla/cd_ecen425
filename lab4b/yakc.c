@@ -131,6 +131,10 @@ void YKNewTask(void (* task)(void), void *taskStack, int priority){//and this on
         YKScheduler();
 }
 void YKRun(void){
+    
+    
+    printString("RUNN.\n");
+
     YKExitMutex();
     /* Set global flag to indicate kernel started */
     running =1;
