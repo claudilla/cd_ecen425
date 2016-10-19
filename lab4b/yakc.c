@@ -62,19 +62,19 @@ void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//a
     stack_ptr =taskStack;
     
     // *--stack_ptr = (UWORD) 0x0001;   // empty space (ret address normally goes here)
-    *--stack_ptr = (unsigned_int) 0x0202;   // flags (maybe 0202?)
-    *--stack_ptr = (unsigned_int) 0x0000;   // CS
-    *--stack_ptr = (unsigned_int) task;     // IP (points to task code)
-    *--stack_ptr = (unsigned_int) 0x0000;   // AX (equivalent to push ax)
-    *--stack_ptr = (unsigned_int) 0x0000;   // BX
-    *--stack_ptr = (unsigned_int) 0x0000;   // CX
-    *--stack_ptr = (unsigned_int) 0x0000;   // DX
+    *--stack_ptr = (unsigned int) 0x0202;   // flags (maybe 0202?)
+    *--stack_ptr = (unsigned int) 0x0000;   // CS
+    *--stack_ptr = (unsigned int) task;     // IP (points to task code)
+    *--stack_ptr = (unsigned int) 0x0000;   // AX (equivalent to push ax)
+    *--stack_ptr = (unsigned int) 0x0000;   // BX
+    *--stack_ptr = (unsigned int) 0x0000;   // CX
+    *--stack_ptr = (unsigned int) 0x0000;   // DX
     //    *--stack_ptr = (UWORD) 0x0000;   // BP
-    *--stack_ptr = (unsigned_int) 0x0000;   // SI
-    *--stack_ptr = (unsigned_int) 0x0000;   // DI
-    *--stack_ptr = (unsigned_int) 0x0000;   // DS
-    *--stack_ptr = (unsigned_int) 0x0000;   // ES
-    *--stack_ptr = (unsigned_int) taskStack; // BP
+    *--stack_ptr = (unsigned int) 0x0000;   // SI
+    *--stack_ptr = (unsigned int) 0x0000;   // DI
+    *--stack_ptr = (unsigned int) 0x0000;   // DS
+    *--stack_ptr = (unsigned int) 0x0000;   // ES
+    *--stack_ptr = (unsigned int) taskStack; // BP
     
     
     
