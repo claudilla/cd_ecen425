@@ -33,18 +33,21 @@ void YKInitialize(void)
     CurrPriority =100;   /* Priority task that is running */
     NextPriority =0;/* Which one is the priority to excute next? */
     FirstDispatcherFlag=1;
-    
+    printString("Init kernel2.\n");
+
     
     YKemptyTCBList = &(YKTCBArray[0]);          	/* Points list to first TCB */
     for (i = 0; i < MAXTASKS; i++)
         YKTCBArray[i].next = &(YKTCBArray[i+1]); 	/*This next is goingto receive that value*/
     YKTCBArray[MAXTASKS].next = NULL;
     YKNewTask(YKIdleTask, (void *)&IdleStk[idleSTACKSIZE],100 ); /*Create New Task*/
-    
+    printString("Init kernel3.\n");
+
     
     YKcurrTask = YKRdyTCBList;
     YKReadyNextTask = YKRdyTCBList;
-    
+    printString("Init kernel4.\n");
+
     
 }
 
@@ -81,6 +84,7 @@ void YKNewTask(void (* task)(void), void *taskStack, int priority){//and this on
     
     newTask = YKemptyTCBList; //putting first task to temp//
     YKemptyTCBList = newTask->next;
+    
     newTask->stackptr = stack_ptr;
     newTask->state= 'r';
     newTask->priority = priority;
