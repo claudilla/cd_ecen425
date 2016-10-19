@@ -31,7 +31,7 @@ void YKInitialize(void)
     running   	 =0;
     depth 		 =0;
     CurrPriority =100;   /* Priority task that is running */
-    NextPriority =0;/* Which one is the priority to excute next? */
+    //NextPriority =0;/* Which one is the priority to excute next? */
     FirstDispatcherFlag=1;
     printString("Init kernel2.\n");
 
@@ -40,19 +40,20 @@ void YKInitialize(void)
     for (i = 0; i < MAXTASKS; i++)
         YKTCBArray[i].next = &(YKTCBArray[i+1]); 	/*This next is goingto receive that value*/
     YKTCBArray[MAXTASKS].next = NULL;
+    printString("creating task.\n");
     YKNewTask(YKIdleTask, (void *)&IdleStk[idleSTACKSIZE],100 ); /*Create New Task*/
-    printString("Init kernel3.\n");
+    printString("created task.\n");
 
     
     YKcurrTask = YKRdyTCBList;
     YKReadyNextTask = YKRdyTCBList;
-    printString("Init kernel4.\n");
+   // printString("Init kernel4.\n");
 
     
 }
 
 void YKIdleTask(void){
-    
+    printString("Init idle.\n");
     while(1){
         YKEnterMutex(); /*Disable Interrupts*/
         YKIdleCount++;
@@ -91,6 +92,7 @@ void YKNewTask(void (* task)(void), void *taskStack, int priority){//and this on
     newTask->delay =0;
     newTask->next = NULL;
     newTask->prev = NULL;
+    
     if (YKRdyTCBList == NULL)	/* is this first insertion, checking for first time */
     {
         YKRdyTCBList = newTask;
@@ -102,15 +104,15 @@ void YKNewTask(void (* task)(void), void *taskStack, int priority){//and this on
     {
         tmp2 = YKRdyTCBList;	/* insert in sorted ready list */
         
-        while (tmp2->priority < newTask->priority)
+        while (tmp2->priority < newTask->priority) {
             tmp2 = tmp2->next;	/* assumes idle task is at end */
-        
+        }
         
         if (tmp2->prev == NULL)	/* insert in list before tmp2 */
         {
             YKRdyTCBList = newTask;
             newTask->prev = NULL;
-            newTask->prev = tmp2;
+            newTask->next = tmp2;
             newTask->next->prev= newTask;
             
         }
