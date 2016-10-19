@@ -57,7 +57,7 @@ void YKIdleTask(void){
     }
     
 }
-void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//and this one
+void YKNewTask(void (* task)(void), void *taskStack, int priority){//and this one
     TCBptr newTask, tmp2;
     unsigned int *stack_ptr;
     stack_ptr =taskStack;

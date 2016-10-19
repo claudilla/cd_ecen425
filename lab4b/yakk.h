@@ -24,7 +24,7 @@ typedef unsigned int UWORD;
 
 void YKInitialize(void);
 void YKIdleTask(void);
-void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority);
+void YKNewTask(void (* task)(void), void *taskStack, int priority);
 void YKRun(void);
 void YKDispatcher_one(void);
 void YKDispatcher();
