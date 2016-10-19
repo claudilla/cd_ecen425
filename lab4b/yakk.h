@@ -8,7 +8,7 @@
 typedef struct TCBlock *TCBptr; //pointer that points to the struct??
 
 typedef struct TCBlock {				
-	int	TCBId;			/* Task name or ID*/    
+	//int	TCBId;			/* Task name or ID*/
 	void *stackptr;		/* pointer to current top of stack */
 	//void *ip;	// void (* task)(void)
     char state;			/* current state */
