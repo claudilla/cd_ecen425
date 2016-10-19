@@ -10,10 +10,10 @@ YKExitMutex:
 
 YKDispatcher_one:
     mov bx, word[YKReadyNextTask]  ; switch the top of the stack to next task to run
-    mov sp,[bx] //move bx to sp
+    mov sp,[bx]
 
     mov bx, word[YKReadyNextTask]   ; move ready task to the runnin task
-    mov word[YKcurrTask], bx   //restore context
+    mov word[YKcurrTask], bx   
 
 	pop bp			; pop off reverse order, restore context
 	pop es		
@@ -30,9 +30,8 @@ YKDispatcher_one:
 
 
 YKDispatcher:
-//
-//    pushf	 //save flags
-//	push cs // save code segment offset for ip
+
+
 	push word [bp+2] ;ip
 		
 	push AX			
@@ -49,8 +48,8 @@ YKDispatcher:
 	mov bx, word[YKcurrTask]
 	mov [bx], sp
 
-    mov bx, word[YKReadyNextTask] //put tcbpr next ready task to bp
-    mov sp, [bx]  //put nextready task to current task
+    mov bx, word[YKReadyNextTask]
+    mov sp, [bx]
     mov bx, word[YKReadyNextTask]
     mov word[YKcurrTask], bx
     pop bp
