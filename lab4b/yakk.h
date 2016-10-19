@@ -3,7 +3,7 @@
 
 /*Kernel Data Structures*/
 
-//gedit
+
 
 typedef struct TCBlock *TCBptr; //pointer that points to the struct??
 

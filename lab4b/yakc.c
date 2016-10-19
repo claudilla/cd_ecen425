@@ -2,9 +2,6 @@
 #include "yaku.h"
 #include "clib.h"
 
-#define NULL 0
-#define MAXTASKS 5					/* count of user tasks */
-#define idleSTACKSIZE 256
 int IdleStk[idleSTACKSIZE];
 
 TCBptr YKRdyTCBList;					/* a list of TCBs of all ready tasks in order of decreasing priority */
@@ -65,21 +62,21 @@ void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//a
     stack_ptr =taskStack;
     
     // *--stack_ptr = (UWORD) 0x0001;   // empty space (ret address normally goes here)
-    109     *--stack_ptr = (unsigned_int) 0x0202;   // flags (maybe 0202?)
-    110     *--stack_ptr = (unsigned_int) 0x0000;   // CS
-    111     *--stack_ptr = (unsigned_int) task;     // IP (points to task code)
-    112     *--stack_ptr = (unsigned_int) 0x0000;   // AX (equivalent to push ax)
-    113     *--stack_ptr = (unsigned_int) 0x0000;   // BX
-    114     *--stack_ptr = (unsigned_int) 0x0000;   // CX
-    115     *--stack_ptr = (unsigned_int) 0x0000;   // DX
-    116 //    *--stack_ptr = (UWORD) 0x0000;   // BP
-    117     *--stack_ptr = (unsigned_int) 0x0000;   // SI
-    118     *--stack_ptr = (unsigned_int) 0x0000;   // DI
-    119     *--stack_ptr = (unsigned_int) 0x0000;   // DS
-    120     *--stack_ptr = (unsigned_int) 0x0000;   // ES
-    121     *--stack_ptr = (unsigned_int) taskStack; // BP
+    *--stack_ptr = (unsigned_int) 0x0202;   // flags (maybe 0202?)
+    *--stack_ptr = (unsigned_int) 0x0000;   // CS
+    *--stack_ptr = (unsigned_int) task;     // IP (points to task code)
+    *--stack_ptr = (unsigned_int) 0x0000;   // AX (equivalent to push ax)
+    *--stack_ptr = (unsigned_int) 0x0000;   // BX
+    *--stack_ptr = (unsigned_int) 0x0000;   // CX
+    *--stack_ptr = (unsigned_int) 0x0000;   // DX
+    //    *--stack_ptr = (UWORD) 0x0000;   // BP
+    *--stack_ptr = (unsigned_int) 0x0000;   // SI
+    *--stack_ptr = (unsigned_int) 0x0000;   // DI
+    *--stack_ptr = (unsigned_int) 0x0000;   // DS
+    *--stack_ptr = (unsigned_int) 0x0000;   // ES
+    *--stack_ptr = (unsigned_int) taskStack; // BP
     
-
+    
     
     newTask = YKemptyTCBList; //putting first task to temp//
     YKemptyTCBList = newTask->next;
