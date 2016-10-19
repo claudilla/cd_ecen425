@@ -1,4 +1,5 @@
 resetisr:
+	;inc word[depth]		;ok????????????
 	; move all registers onto the stack, except sp, ss, cs, ip, and the flags
 	;push AX			; push AX onto the stack
 	;push BX		
@@ -28,6 +29,7 @@ resetisr:
 	iret
 
 tickisr:
+	;inc word[depth]		;ok????????????
 	; move all registers onto the stack, except sp, ss, cs, ip, and the flags
 	push AX			; push AX onto the stack
 	push BX		
@@ -57,6 +59,7 @@ tickisr:
 	iret
 
 keyboardisr:
+	;inc word[depth]		;ok????????????
 	; move all registers onto the stack, except sp, ss, cs, ip, and the flags
 	push AX			;push AX onto the stack
 	push BX		
