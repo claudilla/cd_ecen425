@@ -32,7 +32,7 @@ YKDispatcher_one:
 YKDispatcher:
 
 
-	push word [bp+2] ;ip
+	//push word [bp+2] ;ip
 		
 	push AX			
 	push BX		
@@ -53,9 +53,6 @@ YKDispatcher:
     mov bx, word[YKReadyNextTask]
     mov word[YKcurrTask], bx
     pop bp
-
-
-
 
 
 

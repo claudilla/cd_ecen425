@@ -6,7 +6,7 @@
 //gedit
 
 typedef struct TCBlock *TCBptr; //pointer that points to the struct??
-extern int YKCtxSwCount;
+
 typedef struct TCBlock {				
 	int	TCBId;			/* Task name or ID*/    
 	void *stackptr;		/* pointer to current top of stack */
@@ -18,6 +18,9 @@ typedef struct TCBlock {
     TCBptr prev;       /* prev otr for double linked lsit*/
 }  TCB;
 
+extern int YKCtxSwCount;
+
+typedef unsigned int UWORD;
 
 void YKInitialize(void);
 void YKIdleTask(void);
