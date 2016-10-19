@@ -7,13 +7,14 @@ int IdleStk[idleSTACKSIZE];
 TCBptr YKRdyTCBList;					/* a list of TCBs of all ready tasks in order of decreasing priority */
 TCBptr YKemptyTCBList;					/* a list of available TCBs */
 TCB    YKTCBArray[MAXTASKS+1];			/* array to allocate all needed TCBs (extra one is for the idle task) */
+
 TCBptr YKcurrTask; //tasl executing
 TCBptr YKReadyNextTask; //points to ready tasSK
 
 unsigned int running;           /*  Flag to see if mt Kernel is running */
 unsigned int depth;
 int YKCtxSwCount;
-unsigned int YKIdleCount;
+int YKIdleCount;
 unsigned int CurrPriority;     /* Priority task that is running */
 unsigned int NextPriority;     /* Which one is the priority to excute next? */
 unsigned int FirstDispatcherFlag;        /* This is flag is to know when my task is running for the first time*/
@@ -105,16 +106,18 @@ void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//a
         {
             YKRdyTCBList = newTask;
             newTask->prev = NULL;
-            newTask->prev = YKRdyTCBList;
+            newTask->prev = tmp2;
             newTask->next->prev= newTask;
             
         }
         
         else{
             tmp2->prev->next = newTask;
+            
+            tmp2->prev = newTask;
             newTask->prev = tmp2->prev;
             newTask->next = tmp2;
-            tmp2->prev = newTask;
+          
         }
     }
     
