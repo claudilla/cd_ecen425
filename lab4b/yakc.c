@@ -146,7 +146,7 @@ void YKScheduler(void){
         
         
         NextPriority= tmp->priority;
-        ReadyTask= tmp;
+        YKReadyNextTask= tmp;
         
         if( CurrPriority != NextPriority){
             YKCtxSwCount++;
