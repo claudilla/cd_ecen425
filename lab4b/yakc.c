@@ -157,7 +157,7 @@ void YKScheduler(void){
         tmp=YKRdyTCBList;
         
         while( tmp->next != NULL){ //while thre is another task in tmp
-            tmp->state = 'r'; //if temp is ready
+            if(tmp->state = 'r'); //if temp is ready
             break;
             tmp = tmp->next; //tmp points to highest priority of the ready task
         }
