@@ -69,7 +69,7 @@ void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//a
     newTask = YKemptyTCBList; //putting first task to temp//
     YKemptyTCBList = newTask->next;
     
-    newTask->stack_ptr = stack_ptr;
+    newTask->stackptr = stack_ptr;
     newTask->state= 'r';
     newTask->priority = priority;
     newTask->delay =0;
