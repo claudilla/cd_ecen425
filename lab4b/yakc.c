@@ -60,24 +60,17 @@ void YKIdleTask(void){
     
 }
 void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//and this one
-    
-
     TCBptr newTask, tmp2;
     unsigned int *stack_ptr;
     stack_ptr =taskStack;
-   	
     newTask = YKemptyTCBList; //putting first task to temp//
     YKemptyTCBList = newTask->next;
-    
     newTask->stackptr = stack_ptr;
     newTask->state= 'r';
     newTask->priority = priority;
     newTask->delay =0;
     newTask->next = NULL;
     newTask->prev = NULL;
-    
-    
-    
     if (YKRdyTCBList == NULL)	/* is this first insertion, checking for first time */
     {
         YKRdyTCBList = newTask;
@@ -113,9 +106,7 @@ void YKNewTask(void (* task)(void), void *taskStack, unsigned char priority){//a
     if(!running)
         YKRun();
     else
-        YKScheduler;
-}
-
+        YKScheduler();
 }
 void YKRun(void){
     YKExitMutex();
@@ -141,7 +132,7 @@ void YKExitISR(void){
 }
 
 void YKScheduler(void){
-
+    
     TCBptr tmp;
     if (running == 1){
         YKEnterMutex();
@@ -167,7 +158,7 @@ void YKScheduler(void){
             }else{
                 asm("pushf");   //pushing flags/
                 asm("push cs"); //
-                YKDispatcher():
+                YKDispatcher();
             }
         }
     }
