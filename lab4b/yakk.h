@@ -19,7 +19,7 @@ typedef struct TCBlock {
 }  TCB;
 
 extern int YKCtxSwCount;
-
+extern int YKIdleCount;
 typedef unsigned int UWORD;
 
 void YKInitialize(void);

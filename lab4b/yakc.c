@@ -104,15 +104,15 @@ void YKNewTask(void (* task)(void), void *taskStack, int priority){//and this on
     {
         tmp2 = YKRdyTCBList;	/* insert in sorted ready list */
         
-        while (tmp2->priority < newTask->priority)
+        while (tmp2->priority < newTask->priority) {
             tmp2 = tmp2->next;	/* assumes idle task is at end */
-        
+        }
         
         if (tmp2->prev == NULL)	/* insert in list before tmp2 */
         {
             YKRdyTCBList = newTask;
             newTask->prev = NULL;
-            newTask->prev = tmp2;
+            newTask->next = tmp2;
             newTask->next->prev= newTask;
             
         }
